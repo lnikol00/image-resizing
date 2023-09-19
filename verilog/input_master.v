@@ -20,9 +20,9 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module input_master
-#( parameter filename="/Users/38591/Documents/Faks/PDS/Project/images/test1/input.hex",
-				WIDTH= 768,
-				HEIGHT =512
+#( parameter filename="/Users/38591/Documents/Faks/PDS/Project/images/test2/input.hex",
+				WIDTH= 384,
+				HEIGHT =256
     )
     (
     input horizontal_clock,
@@ -46,8 +46,6 @@ reg [7:0] memory[0:HEIGHT*WIDTH*3-1];
  integer red[0:HEIGHT*WIDTH-1];
  integer blue[0:HEIGHT*WIDTH-1];
  integer green[0:HEIGHT*WIDTH-1];
- integer gg;
- 
 
  
   reg [10:0] row;
@@ -62,7 +60,7 @@ reg [7:0] memory[0:HEIGHT*WIDTH*3-1];
   end 
  always@(posedge horizontal_clock ,negedge horizontal_reset) 
  begin
- if(~horizontal_reset)
+ if(!horizontal_reset)
      begin
          control_horizontal_sync_counter <=0;
          end
@@ -76,7 +74,7 @@ reg [7:0] memory[0:HEIGHT*WIDTH*3-1];
                  control_horizontal_sync_counter <=0;
          end
      end
-      if(~horizontal_reset)
+      if(!horizontal_reset)
      begin
          pixel_count <=0;
          end
@@ -87,7 +85,7 @@ reg [7:0] memory[0:HEIGHT*WIDTH*3-1];
                  end
                 
      end
-     if(~horizontal_reset)
+     if(!horizontal_reset)
      begin
          row <=0;
          column<=0;
@@ -112,7 +110,7 @@ reg [7:0] memory[0:HEIGHT*WIDTH*3-1];
                  end
                 
      end
-  if(~horizontal_reset)
+  if(!horizontal_reset)
      begin
         begin_<=0;
         reset<=0;
@@ -153,10 +151,9 @@ reg [7:0] memory[0:HEIGHT*WIDTH*3-1];
       for( j=0;j<WIDTH ;j=j+1)
       
       begin
-      gg=WIDTH*3*(HEIGHT-i-1)+3*j+0;
        
       
-      red[WIDTH*i+j] =temp_memory[gg];
+      red[WIDTH*i+j] =temp_memory[WIDTH*3*(HEIGHT-i-1)+3*j+0];
 		green[WIDTH*i+j] =temp_memory[WIDTH*3*(HEIGHT-i-1)+3*j+1];
         blue[WIDTH*i+j] =temp_memory[WIDTH*3*(HEIGHT-i-1)+3*j+2];
       end
@@ -222,4 +219,3 @@ reg [7:0] memory[0:HEIGHT*WIDTH*3-1];
  end
   
 endmodule
-
