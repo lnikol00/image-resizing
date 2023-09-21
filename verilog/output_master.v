@@ -37,7 +37,7 @@ module output_master
 integer BMP_head_codes[0:54-1];
 reg [7:0]output_BMP [0:HEIGHT*WIDTH*3*4-1];
 reg [20:0] counter;
-integer i,k,l,m;
+integer i,k,v,m;
 wire ok;
 initial begin
 
@@ -103,14 +103,14 @@ always@(posedge clock , negedge reset)
 begin
     if(!reset)
     begin
-        l<=0;
+        v<=0;
         m<=0;
     end 
     else begin
         if(horizontal_sync)begin
-            if(m==WIDTH-1)begin // check for 768/2
+            if(m==WIDTH-1)begin 
                 m<=0;
-                l<=l+2;
+                v<=v+2;
             end
            else begin
             m<=m+1; 
@@ -129,19 +129,19 @@ end
 end
 else begin
     if(horizontal_sync)begin
-        output_BMP[2*WIDTH*3*(2*HEIGHT-l-1)+6*m+2]<=r; //A1
-        output_BMP[2*WIDTH*3*(2*HEIGHT-l-1)+6*m+1]<=g;
-        output_BMP[2*WIDTH*3*(2*HEIGHT-l-1)+6*m+0]<=b;
-        output_BMP[2*WIDTH*3*(2*HEIGHT-l-1)+6*m+5]<=r; //A2
-        output_BMP[2*WIDTH*3*(2*HEIGHT-l-1)+6*m+4]<=g;
-        output_BMP[2*WIDTH*3*(2*HEIGHT-l-1)+6*m+3]<=b;
+        output_BMP[2*WIDTH*3*(2*HEIGHT-v-1)+6*m+2]<=r; //A1
+        output_BMP[2*WIDTH*3*(2*HEIGHT-v-1)+6*m+1]<=g;
+        output_BMP[2*WIDTH*3*(2*HEIGHT-v-1)+6*m+0]<=b;
+        output_BMP[2*WIDTH*3*(2*HEIGHT-v-1)+6*m+5]<=r; //A2
+        output_BMP[2*WIDTH*3*(2*HEIGHT-v-1)+6*m+4]<=g;
+        output_BMP[2*WIDTH*3*(2*HEIGHT-v-1)+6*m+3]<=b;
         
-        output_BMP[2*WIDTH*3*(2*HEIGHT-l-1-1)+6*m+2]<=r; //A3
-        output_BMP[2*WIDTH*3*(2*HEIGHT-l-1-1)+6*m+1]<=g;
-        output_BMP[2*WIDTH*3*(2*HEIGHT-l-1-1)+6*m+0]<=b;
-        output_BMP[2*WIDTH*3*(2*HEIGHT-l-1-1)+6*m+5]<=r; //A4
-        output_BMP[2*WIDTH*3*(2*HEIGHT-l-1-1)+6*m+4]<=g;
-        output_BMP[2*WIDTH*3*(2*HEIGHT-l-1-1)+6*m+3]<=b;
+        output_BMP[2*WIDTH*3*(2*HEIGHT-v-1-1)+6*m+2]<=r; //A3
+        output_BMP[2*WIDTH*3*(2*HEIGHT-v-1-1)+6*m+1]<=g;
+        output_BMP[2*WIDTH*3*(2*HEIGHT-v-1-1)+6*m+0]<=b;
+        output_BMP[2*WIDTH*3*(2*HEIGHT-v-1-1)+6*m+5]<=r; //A4
+        output_BMP[2*WIDTH*3*(2*HEIGHT-v-1-1)+6*m+4]<=g;
+        output_BMP[2*WIDTH*3*(2*HEIGHT-v-1-1)+6*m+3]<=b;
     end
 end
 

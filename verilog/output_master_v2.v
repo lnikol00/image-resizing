@@ -106,7 +106,7 @@ begin
     end 
     else begin
         if(horizontal_sync)begin
-            if(m==WIDTH-1)begin // check for 768/2
+            if(m==WIDTH-1)begin 
                 m<=0;
                 v<=v+2;
             end
