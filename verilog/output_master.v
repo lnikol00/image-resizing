@@ -129,17 +129,17 @@ end
 end
 else begin
     if(horizontal_sync)begin
-        output_BMP[2*WIDTH*3*(2*HEIGHT-l-1)+6*m+2]<=r; //removed 2
+        output_BMP[2*WIDTH*3*(2*HEIGHT-l-1)+6*m+2]<=r; //A1
         output_BMP[2*WIDTH*3*(2*HEIGHT-l-1)+6*m+1]<=g;
         output_BMP[2*WIDTH*3*(2*HEIGHT-l-1)+6*m+0]<=b;
-        output_BMP[2*WIDTH*3*(2*HEIGHT-l-1)+6*m+5]<=r;
+        output_BMP[2*WIDTH*3*(2*HEIGHT-l-1)+6*m+5]<=r; //A2
         output_BMP[2*WIDTH*3*(2*HEIGHT-l-1)+6*m+4]<=g;
         output_BMP[2*WIDTH*3*(2*HEIGHT-l-1)+6*m+3]<=b;
         
-        output_BMP[2*WIDTH*3*(2*HEIGHT-l-1-1)+6*m+2]<=r;
+        output_BMP[2*WIDTH*3*(2*HEIGHT-l-1-1)+6*m+2]<=r; //A3
         output_BMP[2*WIDTH*3*(2*HEIGHT-l-1-1)+6*m+1]<=g;
         output_BMP[2*WIDTH*3*(2*HEIGHT-l-1-1)+6*m+0]<=b;
-        output_BMP[2*WIDTH*3*(2*HEIGHT-l-1-1)+6*m+5]<=r;
+        output_BMP[2*WIDTH*3*(2*HEIGHT-l-1-1)+6*m+5]<=r; //A4
         output_BMP[2*WIDTH*3*(2*HEIGHT-l-1-1)+6*m+4]<=g;
         output_BMP[2*WIDTH*3*(2*HEIGHT-l-1-1)+6*m+3]<=b;
     end
